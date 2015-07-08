@@ -19,7 +19,7 @@ var Waypoint = require("./nodes/waypoint");
 var schema = new Document.Schema("archivist-interview", "0.2.0");
 
 schema.getDefaultTextType = function() {
-  return "paragraph";
+  return "text";
 };
 schema.addNodes([
   DocumentNode,
