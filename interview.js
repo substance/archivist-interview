@@ -21,6 +21,7 @@ var schema = new Document.Schema("archivist-interview", "0.2.0");
 schema.getDefaultTextType = function() {
   return "text";
 };
+
 schema.addNodes([
   DocumentNode,
   Emphasis,
@@ -31,7 +32,6 @@ schema.addNodes([
   EntityReference,
   Waypoint
 ]);
-
 
 var Interview = function() {
   Interview.super.call(this, schema);
@@ -65,13 +65,7 @@ Interview.Prototype = function() {
   };
 
   this.documentDidLoad = function() {
-    console.log('document did load!');
-    // Interview.super.prototype.documentDidLoad.call(this);
-    // if (!this.isClipboard()) {
-    //   _.each(this.collections, function(c) {
-    //     c.update();
-    //   });
-    // }
+    Interview.super.prototype.documentDidLoad.call(this);
   };
 
   // TODO: implement!
