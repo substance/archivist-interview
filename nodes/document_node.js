@@ -38,7 +38,8 @@ var DocumentNode = Substance.Document.Node.extend({
     // Workflow
     "transcripted": "boolean",
     "verified": "boolean",
-    "finished": "boolean"
+    "finished": "boolean",
+    "published": "boolean"
   },
 
   getWaypoints: function() {
