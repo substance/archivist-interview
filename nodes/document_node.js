@@ -7,8 +7,11 @@ var DocumentNode = Substance.Document.Node.extend({
     "guid": "string",
     "creator": "string",
     "title": "string",
+    "short_summary": "string",
+    "short_summary_en": "string",
     "abstract": "string",
     "abstract_en": "string",
+    "abstract_de": "string",
     "created_at": "string",
     "updated_at": "string",
     "published_on": "string",
@@ -28,9 +31,8 @@ var DocumentNode = Substance.Document.Node.extend({
 
     // Subject related
     "interviewee_bio": "string",
-    "interviewee_category": "string",
-    "interviewee_forced_labor_type": "string",
-    "interviewee_prisons": ["array", "string"],
+    "interviewee_bio_en": "string",
+    "interviewee_bio_de": "string",
     "interviewee_waypoints": ["array", "waypoint"],
 
     // Workflow
