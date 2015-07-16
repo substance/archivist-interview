@@ -1,4 +1,5 @@
 var Substance = require("substance");
+var _ = require("substance/helpers");
 
 // A simple tree implementation
 // -------------
@@ -38,6 +39,28 @@ Tree.Prototype = function() {
     var node = this.nodes[nodeId];
     return this.nodes[node.parent];
   };
+
+  // Collect all parent ids of a given node
+  this.getParents = function(nodeId) {
+    var node = this.get(nodeId);
+    var parents = [];
+    while (node = this.getParent(node.id)) {
+      parents.push(node.id);
+    }
+    return parents;
+  };
+
+  // Collect all child nodes of a node
+  // returns list of ids
+  this.getAllChildren = function(nodeId) {
+    var childNodes = this.getChildren(nodeId);
+    if (childNodes.length === 0) return [];
+    var allChildren = _.pluck(childNodes, 'id');
+    _.each(childNodes, function(childNode) {
+      allChildren = allChildren.concat(this.getAllChildren(childNode.id))
+    }, this);
+    return allChildren;
+  }
 
   // Walk the tree
   this.walkTree = function(fn, ctx) {

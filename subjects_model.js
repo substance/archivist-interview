@@ -1,22 +1,20 @@
 var Tree = require("./tree");
 var Substance = require("substance");
+var _ = require("substance/helpers");
 
 var SubjectsModel = function(doc, subjects) {
   this.doc = doc;
-
+  
   // Convert subjects to hash
   this.subjects = {};
-
   Substance.each(subjects, function(subject) {
     var references = doc.subjectReferencesIndex.get(subject.id);
-
     this.subjects[subject.id] = subject;
     this.subjects[subject.id].references = Substance._.pluck(references, 'id');
-
   }, this);
-
   this.tree = new Tree(this.subjects);
 };
+
 
 // Get tree representation suitable for jsTree widget
 // ----------------
@@ -89,6 +87,20 @@ SubjectsModel.prototype.getFullPathForSubject = function(subjectId) {
     return res;
   }
   return getParent(subjectId);
+};
+  
+// Used in state_handlers.js
+SubjectsModel.prototype.getReferencesForSubject = function(subjectId) {
+  var tree = this.getReferencedSubjectsTree();
+  var relevantSubjects = tree.getAllChildren(subjectId).concat(subjectId);
+  var doc = this.doc;
+  var references = [];
+
+  _.each(relevantSubjects, function(subjectId) {
+    references = references.concat(Object.keys(doc.subjectReferencesIndex.get(subjectId)));
+  });
+
+  return _.uniq(references);
 };
 
 SubjectsModel.prototype.getAllReferencedSubjectsWithParents = function() {
