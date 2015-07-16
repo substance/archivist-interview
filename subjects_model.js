@@ -71,9 +71,6 @@ SubjectsModel.prototype.getTree = function() {
 };
 
 SubjectsModel.prototype.getReferencedSubjectsTree = function() {
-  // var referencedSubjects = subjects.getAllReferencedSubjectsWithParents();
-  // var filteredModel = new SubjectsModel(app.doc, referencedSubjects);
-
   var referencedSubjects = this.getAllReferencedSubjectsWithParents();
   var filteredModel = new SubjectsModel(this.doc, referencedSubjects);
   return filteredModel.tree;
