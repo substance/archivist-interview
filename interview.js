@@ -73,7 +73,6 @@ Interview.Prototype = function() {
     // return new ArticleXmlExporter().convert(this);
   };
 
-
 };
 
 
@@ -84,7 +83,6 @@ Interview.schema = schema;
 Interview.fromJson = function(json) {
   var doc = new Interview();
   doc.loadSeed(json);
-  // doc.documentDidLoad();
   return doc;
 };
 
@@ -95,5 +93,6 @@ Interview.fromXml = function(xml) {
   // doc.documentDidLoad();
   // return doc;
 };
+
 
 module.exports = Interview;
