@@ -11,6 +11,8 @@ var TextNode = require("./nodes/text_node");
 var Emphasis = require("./nodes/emphasis");
 var Strong = require("./nodes/strong");
 var Remark = require("./nodes/remark");
+var Comment = require("./nodes/comment");
+var Reply = require("./nodes/reply");
 var Timecode = require("./nodes/timecode");
 var SubjectReference = require("./nodes/subject_reference");
 var EntityReference = require("./nodes/entity_reference");
@@ -26,7 +28,9 @@ schema.addNodes([
   DocumentNode,
   Emphasis,
   Strong,
-  Remark,
+  Remark, // Legacy
+  Comment,
+  Reply,
   Timecode,
   SubjectReference,
   EntityReference,
@@ -53,8 +57,14 @@ Interview.Prototype = function() {
       property: "target"
     }));
 
+    // Legacy
     this.remarksIndex = this.addIndex('remarksIndex', Substance.Data.Index.create({
       type: "remark",
+      property: "id"
+    }));
+
+    this.commentsIndex = this.addIndex('commentsIndex', Substance.Data.Index.create({
+      type: "comment",
       property: "id"
     }));
 
