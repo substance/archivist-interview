@@ -8,8 +8,8 @@ var Document = Substance.Document;
 
 var DocumentNode = require("./nodes/document_node");
 var TextNode = require("./nodes/text_node");
-var Emphasis = require("./nodes/emphasis");
-var Strong = require("./nodes/strong");
+var Emphasis = Document.Emphasis;
+var Strong = Document.Strong;
 var Remark = require("./nodes/remark");
 var Comment = require("./nodes/comment");
 var Reply = require("./nodes/reply");
